@@ -16,6 +16,11 @@ const result = document.getElementById("result")
 document.getElementById("copy").addEventListener("click", copyAll)
 document.getElementById("clear").addEventListener("click", clearAll)
 document.getElementById("save").addEventListener("click", saveAll)
+document.getElementById("popout").addEventListener("click", popout)
+
+function popout() {
+  window.open("https://eager-almeida-a52a97.netlify.app/", "popUpWindow", "height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes")
+}
 
 // Handle copy button
 function copyAll() {
