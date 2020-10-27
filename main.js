@@ -19,7 +19,7 @@ document.getElementById("save").addEventListener("click", saveAll)
 document.getElementById("popout").addEventListener("click", popout)
 
 function popout() {
-  window.open("https://eager-almeida-a52a97.netlify.app/", "popUpWindow", "height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes")
+  window.open("https://eager-almeida-a52a97.netlify.app/", "popUpWindow", "height=516,width=455,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no, status=yes")
 }
 
 // Handle copy button
@@ -34,7 +34,11 @@ function copyAll() {
 
 // Handle clear
 function clearAll() {
-  console.log("cleared")
+  userid.value = ""
+  name.value = ""
+  role.value = ""
+  phone.value = ""
+  region.value = ""
 }
 // Handle save
 function saveAll() {

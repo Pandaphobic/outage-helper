@@ -8,3 +8,25 @@
   flex-direction: row;
   padding: 10px 0;
 }
+
+.table-box::-webkit-scrollbar {
+  width: 0.35rem;
+}
+.table-box::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+.table-box::-webkit-scrollbar-thumb {
+  background: #a483ff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 0.35rem;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: #a483ff;
+  border-radius: 5px;
+}
