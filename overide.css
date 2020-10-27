@@ -3,6 +3,10 @@
   max-height: 200px;
 }
 
+.btn {
+  margin: 0.5rem;
+}
+
 .side-to-side {
   display: flex;
   flex-direction: row;
