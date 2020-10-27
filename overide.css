@@ -1,0 +1,10 @@
+.table-box {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+.side-to-side {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+}
