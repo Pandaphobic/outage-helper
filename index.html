@@ -4,72 +4,119 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/darkly/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="overide.css" />
     <title>Outage Helper</title>
   </head>
   <body>
-    <div class="table-box">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Scope</th>
-            <th scope="col">Incident Number</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-success">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Resolved</td>
-          </tr>
-          <tr class="table-danger">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Hard Down</td>
-          </tr>
-          <tr class="table-warning">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Not Reported</td>
-          </tr>
-          <tr class="table-warning">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Not Reported</td>
-          </tr>
-          <tr class="table-danger">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Hard Down</td>
-          </tr>
-          <tr class="table-danger">
-            <th scope="row">P1</th>
-            <td>INC000002345676</td>
-            <td>Advisor Portal - Error: Nothing Works</td>
-            <td>Hard Down</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="input-group">
+      <h3 class="ml-5 mt-2 text-warning">Outage List</h3>
+      <button id="addBtn" type="button" class="btn btn-warning"><i class="fas fa-plus"></i></button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Scope</th>
+          <th scope="col">Incident Number</th>
+          <th scope="col">Description</th>
+          <th scope="col">Instruction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-danger">
+          <th scope="row">P1</th>
+          <td>INC000004365045</td>
+          <td>Process Automation - Error / Unable :cannot access platform zero</td>
+          <td>Duplicate</td>
+        </tr>
+
+        <tr class="table-warning">
+          <th scope="row">P2</th>
+          <td>INC000004334496</td>
+          <td>Process Automation - CESD-153 - Error / Unable error 1005 client creation failed</td>
+          <td>Duplicate</td>
+        </tr>
+
+        <tr class="table-info">
+          <th scope="row">P3</th>
+          <td>INC000004323714</td>
+          <td>Advisor Portal - Error an error occurred while attempting to retrieve IG Living Plan Assigned</td>
+          <td>Duplicate</td>
+        </tr>
+
+        <tr class="table-success">
+          <th scope="row">Up</th>
+          <td>INC000004334496</td>
+          <td>Process Automation - Pre-Sub - CESD-158: error code 5089: SIN Number on beneficiary</td>
+          <td>Duplicate</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="bg-modal">
+      <div class="modal-content">
+        <div class="close">+</div>
+        <form>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Incident Number</label>
+            <input id="modal-inc" class="form-control form-control-sm" type="text" placeholder="INCXXXXXXXXXX" id="inputSmall" />
+          </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Scope</label>
+            <select class="custom-select" id="modal-scope">
+              <option value="P1">P1 - Everybody</option>
+              <option value="P2">P2 - Too many</option>
+              <option value="P3">P3 - A couple of people</option>
+              <option value="Up">Up - Fixed / Resolved and Monitor</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Description</label>
+            <input id="modal-desc" class="form-control form-control-sm" type="text" placeholder="Description of the outage" />
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Instructions</label>
+            <input id="modal-inst" class="form-control form-control-sm" type="text" placeholder="Instructions for the outage" />
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Template</label>
+            <input id="modal-template" class="form-control form-control-sm" type="text" placeholder="search template (optional)" />
+          </div>
+          <div class="form-group">
+            <label class="col-form-label col-form-label-sm" for="inputSmall">Summary</label>
+            <input id="modal-summary" class="form-control form-control-sm" type="text" placeholder="summary line (option)" />
+          </div>
+          <div class="form-group buttons">
+            <button id="modal-backBtn" type="button" class="modal-btn btn btn-warning">Back</button>
+            <button id="modal-doneBtn" type="button" class="modal-btn btn btn-warning">Done</button>
+          </div>
+        </form>
+      </div>
     </div>
 
+    <!-- <span class="badge badge-primary">Primary</span>
+    <span class="badge badge-secondary">Secondary</span>
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-danger">Danger</span>
+    <span class="badge badge-warning">Warning</span>
+    <span class="badge badge-info">Info</span>
+    <span class="badge badge-light">Light</span>
+    <span class="badge badge-dark">Dark</span> -->
+
+    <h4 class="ml-5">Ticket Notes</h4>
     <div class="ticket-area">
-      <h3 class="text-warning mt-4 ml-5">Incident Template</h3>
-      <div class="ticket-box m-auto col-10">
+      <div class="ticket-box m-auto col-10 m-auto">
         <!-- Template -->
         <div class="form-group">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Template</label>
+          <label class="col-form-label col-form-label-sm" for="inputSmall">Template Line</label>
           <input class="form-control form-control-sm" type="text" placeholder="" id="template" />
         </div>
         <!-- Summary -->
         <div class="form-group">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Summary</label>
+          <label class="col-form-label col-form-label-sm" for="inputSmall">Summary Line</label>
           <input class="form-control form-control-sm" type="text" placeholder="" id="summary" />
         </div>
       </div>
@@ -107,18 +154,33 @@
       </div>
     </div>
 
-    <div class="m-auto container d-flex justify-content-center">
-      <button id="copy" type="button" class="btn btn-success col-3">Copy</button>
-      <button id="clear" type="button" class="btn btn-info col-3">Clear</button>
-      <!-- <button id="save" type="button" class="btn btn-warning col-3">Save</button> -->
-      <button id="popout" type="button" class="btn btn-danger col-3">Pop-Out</button>
-    </div>
-
     <div class="form-group col-10 m-auto">
       <label for="exampleTextarea">Result</label>
       <textarea class="form-control" id="result" rows="3"></textarea>
     </div>
+    <br />
 
-    <script src="main.js"></script>
+    <!-- Buttons -->
+    <div class="m-auto col-10 d-flex justify-content-center">
+      <button id="copy-btn" type="button" class="btn btn-warning w-50"><i class="far fa-copy"></i> Copy</button>
+      <button id="clear-btn" type="button" class="btn btn-warning w-50"><i class="fas fa-eraser"></i> Clear</button>
+    </div>
+
+    <br /><br />
+
+    <script>
+      document.getElementById("addBtn").addEventListener("click", function () {
+        console.log("click")
+        document.querySelector(".bg-modal").style.display = "flex"
+      })
+
+      document.querySelector(".close").addEventListener("click", function () {
+        document.querySelector(".bg-modal").style.display = "none"
+      })
+
+      document.querySelector("#modal-backBtn").addEventListener("click", function () {
+        document.querySelector(".bg-modal").style.display = "none"
+      })
+    </script>
   </body>
 </html>

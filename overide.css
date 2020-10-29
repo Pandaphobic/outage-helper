@@ -1,10 +1,19 @@
+#addBtn {
+  position: absolute;
+  right: 0;
+}
+
 .table-box {
   overflow-y: auto;
   max-height: 200px;
 }
 
+.text-small {
+  font-size: 12px;
+}
+
 .btn {
-  margin: 0.5rem;
+  margin: 0.25rem;
 }
 
 .side-to-side {
@@ -13,6 +22,7 @@
   padding: 10px 0;
 }
 
+/* Custom Scroll Bars */
 .table-box::-webkit-scrollbar {
   width: 0.35rem;
 }
@@ -33,4 +43,51 @@
 ::-webkit-scrollbar-thumb {
   background: #a483ff;
   border-radius: 5px;
+}
+
+/******** Modal *********/
+.bg-modal {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.form-group {
+  margin: 5px;
+}
+
+.modal-content {
+  width: 400px;
+  height: 500px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-btn {
+  margin: 15px 15px;
+  width: 120px;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  transform: rotate(45deg);
+  cursor: pointer;
 }
