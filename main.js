@@ -13,6 +13,11 @@ const OutageCtrl = (function () {
     add: function (outageObj) {
       // Get outages
       outages = getOutageList()
+
+      // Assign ID to Outage
+      outageObj.ID = outages.length+1
+      console.log(outageObj)
+
       outages.push(outageObj)
 
       localStorage.setItem("outages", JSON.stringify(outages))
@@ -27,8 +32,15 @@ const OutageCtrl = (function () {
     udpate: function () {
       console.log("update-called")
     },
-    delete: function () {
-      console.log("delete-called")
+    delete: function (outageToDelete) {
+      console.log(outageToDelete)
+      var newOutageList = getOutageList()
+      // remove item from new array (outage list)
+      newOutageList.splice(outageToDelete-1, 1)
+      // Update LS
+      localStorage.setItem("outages", JSON.stringify(newOutageList))
+      // redraw the list based on LS
+      this.updateOutageList()
     },
     init: function () {
       getOutageList()
@@ -40,10 +52,9 @@ const OutageCtrl = (function () {
       const newOutageTable = document.createElement("tbody")
 
       // Draw each outage based on parsed list from LS
-      outageList.forEach(outage => {
-        var row = newOutageTable.insertRow(0)
+      outageList.forEach((outage, index) => {
+        // reset table color / type
         var tableType = ""
-
         // Figure out what color based on scope
         if (outage.scope === "P1") {
           tableType = "table-danger"
@@ -55,20 +66,17 @@ const OutageCtrl = (function () {
           tableType = "table-success"
         }
 
-        // Create a blank row
-        row.classList.add(tableType)
-
-        // Create blank cells in the blank row
-        var rscope = row.insertCell(0)
-        var rinc = row.insertCell(1)
-        var rdesc = row.insertCell(2)
-        var rinst = row.insertCell(3)
-        // Assingn the fields to the cells
-        rscope.innerHTML = outage.scope
-        rinc.innerHTML = outage.inc
-        rdesc.innerHTML = outage.desc
-        rinst.innerHTML = outage.inst
+        newOutageTable.innerHTML += `
+        <tr class="${tableType}" data-id="${index+1}">
+          <td>${outage.scope}</td>
+          <td>${outage.inc}</td>
+          <td>${outage.desc}</td>
+          <td>${outage.inst}</td>
+          <td><a href="#"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `
       })
+      console.log(newOutageTable)
       // Replace the old tbody innerhtml with the new tbody innerhtml
       outageTableBody.innerHTML = newOutageTable.innerHTML
     }
@@ -96,6 +104,19 @@ const ModalCtrl = (function () {
   }
 })()
 
+function handleDeleteBtn(e){
+  e.preventDefault()
+  try {
+  if(e.target.parentElement.parentElement.parentElement.parentElement.classList.contains('remove')){
+    var outageToDelete = e.target.parentElement.parentElement.parentElement.dataset.id
+    OutageCtrl.delete(outageToDelete) 
+  } 
+}catch{
+  // If you select everything, throws an error because the item is null
+  // It doesn't break anything to ignore it (for now)
+}
+}
+
 function handleAddBtn() {
   ModalCtrl.show()
 }
@@ -114,15 +135,16 @@ function handleSubmit() {
   const modalInst = document.getElementById("modal-inst")
 
   console.log("Submit Pushed")
-  const outage = {
+  const outageObj = {
     scope: modalScope.value,
     inc: modalInc.value,
     desc: modalDesc.value,
-    inst: modalInst.value
+    inst: modalInst.value,
+    ID: ''
   }
 
   ModalCtrl.hide()
-  OutageCtrl.add(outage)
+  OutageCtrl.add(outageObj)
 }
 
 // Modal
@@ -132,5 +154,8 @@ document.getElementById("add-btn").addEventListener("click", handleAddBtn)
 document.getElementById("modal-close-btn").addEventListener("click", handleCloseBtn)
 document.getElementById("modal-back-btn").addEventListener("click", handleBackBtn)
 document.getElementById("modal-submit-btn").addEventListener("click", handleSubmit)
+// Listen for delete outage
+document.querySelector('tbody').addEventListener('click', handleDeleteBtn)
+
 
 OutageCtrl.init()

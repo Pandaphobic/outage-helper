@@ -93,3 +93,16 @@
   transform: rotate(45deg);
   cursor: pointer;
 }
+
+tr a {
+  color: rgba(255, 255, 255, 0);
+  justify-content: center;
+}
+
+tr:hover a{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+tr a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}

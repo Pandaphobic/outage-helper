@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/darkly/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/darkly/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" /> 
     <link rel="stylesheet" href="overide.css" />
     <title>Outage Helper</title>
   </head>
@@ -16,15 +16,15 @@
     <table id="outage-table" class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Scope</th>
-          <th scope="col">Incident Number</th>
-          <th scope="col">Description</th>
-          <th scope="col">Instruction</th>
+          <th>Scope</th>
+          <th>INC#</th>
+          <th class="col-4">Description</th>
+          <th>Instruction</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody id="list-body"></tbody>
+      <tbody class="remove" id="list-body"></tbody>
     </table>
-
     <div class="bg-modal" id="modal">
       <div class="modal-content">
         <div id="modal-close-btn" class="close">+</div>
