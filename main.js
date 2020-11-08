@@ -108,8 +108,9 @@ function handleDeleteBtn(e){
   e.preventDefault()
   try {
   if(e.target.parentElement.parentElement.parentElement.parentElement.classList.contains('remove')){
+    if(confirm('Are you sure?')){
     var outageToDelete = e.target.parentElement.parentElement.parentElement.dataset.id
-    OutageCtrl.delete(outageToDelete) 
+    OutageCtrl.delete(outageToDelete)}
   } 
 }catch{
   // If you select everything, throws an error because the item is null
