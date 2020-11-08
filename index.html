@@ -11,9 +11,9 @@
   <body>
     <div class="input-group">
       <h3 class="ml-5 mt-2 text-warning">Outage List</h3>
-      <button id="addBtn" type="button" class="btn btn-warning"><i class="fas fa-plus"></i></button>
+      <button id="add-btn" type="button" class="btn btn-warning"><i class="fas fa-plus"></i></button>
     </div>
-    <table class="table table-hover">
+    <table id="outage-table" class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Scope</th>
@@ -22,47 +22,19 @@
           <th scope="col">Instruction</th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="table-danger">
-          <th scope="row">P1</th>
-          <td>INC000004365045</td>
-          <td>Process Automation - Error / Unable :cannot access platform zero</td>
-          <td>Duplicate</td>
-        </tr>
-
-        <tr class="table-warning">
-          <th scope="row">P2</th>
-          <td>INC000004334496</td>
-          <td>Process Automation - CESD-153 - Error / Unable error 1005 client creation failed</td>
-          <td>Duplicate</td>
-        </tr>
-
-        <tr class="table-info">
-          <th scope="row">P3</th>
-          <td>INC000004323714</td>
-          <td>Advisor Portal - Error an error occurred while attempting to retrieve IG Living Plan Assigned</td>
-          <td>Duplicate</td>
-        </tr>
-
-        <tr class="table-success">
-          <th scope="row">Up</th>
-          <td>INC000004334496</td>
-          <td>Process Automation - Pre-Sub - CESD-158: error code 5089: SIN Number on beneficiary</td>
-          <td>Duplicate</td>
-        </tr>
-      </tbody>
+      <tbody id="list-body"></tbody>
     </table>
 
-    <div class="bg-modal">
+    <div class="bg-modal" id="modal">
       <div class="modal-content">
-        <div class="close">+</div>
+        <div id="modal-close-btn" class="close">+</div>
         <form>
           <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Incident Number</label>
-            <input id="modal-inc" class="form-control form-control-sm" type="text" placeholder="INCXXXXXXXXXX" id="inputSmall" />
+            <label class="col-form-label col-form-label" for="input">Incident Number</label>
+            <input id="modal-inc" class="form-control form-control" type="text" placeholder="INCXXXXXXXXXX" id="input" />
           </div>
           <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Scope</label>
+            <label class="col-form-label col-form-label" for="input">Scope</label>
             <select class="custom-select" id="modal-scope">
               <option value="P1">P1 - Everybody</option>
               <option value="P2">P2 - Too many</option>
@@ -72,26 +44,26 @@
           </div>
 
           <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Description</label>
-            <input id="modal-desc" class="form-control form-control-sm" type="text" placeholder="Description of the outage" />
+            <label class="col-form-label col-form-label" for="input">Description</label>
+            <input id="modal-desc" class="form-control form-control" type="text" placeholder="Description of the outage" />
           </div>
 
           <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Instructions</label>
-            <input id="modal-inst" class="form-control form-control-sm" type="text" placeholder="Instructions for the outage" />
+            <label class="col-form-label col-form-label" for="input">Instructions</label>
+            <input id="modal-inst" class="form-control form-control" type="text" placeholder="Instructions for the outage" />
           </div>
 
-          <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Template</label>
-            <input id="modal-template" class="form-control form-control-sm" type="text" placeholder="search template (optional)" />
-          </div>
-          <div class="form-group">
-            <label class="col-form-label col-form-label-sm" for="inputSmall">Summary</label>
-            <input id="modal-summary" class="form-control form-control-sm" type="text" placeholder="summary line (option)" />
-          </div>
+          <!-- <div class="form-group">
+            <label class="col-form-label col-form-label" for="input">Template</label>
+            <input id="modal-template" class="form-control form-control" type="text" placeholder="search template (optional)" />
+          </div> -->
+          <!-- <div class="form-group">
+            <label class="col-form-label col-form-label" for="input">Summary</label>
+            <input id="modal-summary" class="form-control form-control" type="text" placeholder="summary line (option)" />
+          </div> -->
           <div class="form-group buttons">
-            <button id="modal-backBtn" type="button" class="modal-btn btn btn-warning">Back</button>
-            <button id="modal-doneBtn" type="button" class="modal-btn btn btn-warning">Done</button>
+            <button id="modal-back-btn" type="button" class="modal-btn btn btn-warning">Back</button>
+            <button id="modal-submit-btn" type="button" class="modal-btn btn btn-warning">Submit</button>
           </div>
         </form>
       </div>
@@ -106,81 +78,7 @@
     <span class="badge badge-light">Light</span>
     <span class="badge badge-dark">Dark</span> -->
 
-    <h4 class="ml-5">Ticket Notes</h4>
-    <div class="ticket-area">
-      <div class="ticket-box m-auto col-10 m-auto">
-        <!-- Template -->
-        <div class="form-group">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Template Line</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="template" />
-        </div>
-        <!-- Summary -->
-        <div class="form-group">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Summary Line</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="summary" />
-        </div>
-      </div>
-
-      <!-- Name -->
-      <div class="form-group col-10 m-auto">
-        <label class="col-form-label col-form-label-sm" for="inputSmall">Name</label>
-        <input class="form-control form-control-sm" type="text" placeholder="" id="name" />
-      </div>
-
-      <div class="side-to-side m-auto col-10">
-        <!-- User ID -->
-        <div class="form-group m-auto col-6">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">User ID</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="userid" />
-        </div>
-        <!-- Role -->
-        <div class="form-group m-auto col-6">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Role</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="role" />
-        </div>
-      </div>
-
-      <div class="side-to-side m-auto col-10">
-        <!-- Phone -->
-        <div class="form-group m-auto col-6">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Phone</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="phone" />
-        </div>
-        <!-- Region Number -->
-        <div class="form-group m-auto col-6">
-          <label class="col-form-label col-form-label-sm" for="inputSmall">RO Number</label>
-          <input class="form-control form-control-sm" type="text" placeholder="" id="region" />
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group col-10 m-auto">
-      <label for="exampleTextarea">Result</label>
-      <textarea class="form-control" id="result" rows="3"></textarea>
-    </div>
-    <br />
-
-    <!-- Buttons -->
-    <div class="m-auto col-10 d-flex justify-content-center">
-      <button id="copy-btn" type="button" class="btn btn-warning w-50"><i class="far fa-copy"></i> Copy</button>
-      <button id="clear-btn" type="button" class="btn btn-warning w-50"><i class="fas fa-eraser"></i> Clear</button>
-    </div>
-
     <br /><br />
-
-    <script>
-      document.getElementById("addBtn").addEventListener("click", function () {
-        console.log("click")
-        document.querySelector(".bg-modal").style.display = "flex"
-      })
-
-      document.querySelector(".close").addEventListener("click", function () {
-        document.querySelector(".bg-modal").style.display = "none"
-      })
-
-      document.querySelector("#modal-backBtn").addEventListener("click", function () {
-        document.querySelector(".bg-modal").style.display = "none"
-      })
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

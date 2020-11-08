@@ -1,6 +1,8 @@
-#addBtn {
+#add-btn {
   position: absolute;
   right: 0;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
 }
 
 .table-box {
@@ -65,7 +67,7 @@
 
 .modal-content {
   width: 400px;
-  height: 500px;
+  height: 450px;
   padding: 10px;
   position: relative;
   display: flex;
