@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" /> 
     <link rel="stylesheet" href="overide.css" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-    <title>Outage Helper</title>
+    <title>Outage Assist</title>
   </head>
   <body>
     <div class="input-group">
@@ -17,10 +17,10 @@
     <table id="outage-table" class="table table-hover">
       <thead>
         <tr>
-          <th>Scope</th>
-          <th>INC#</th>
-          <th class="col-4">Description</th>
-          <th>Instruction</th>
+          <th id="scope">Scope</th>
+          <th>Incident #</th>
+          <th>Description</th>
+          <th id="inst">Instruction</th>
           <th></th>
         </tr>
       </thead>
@@ -31,10 +31,6 @@
         <div id="modal-close-btn" class="close">+</div>
         <form>
           <div class="form-group">
-            <label class="col-form-label col-form-label" for="input">Incident Number</label>
-            <input id="modal-inc" class="form-control form-control" type="text" placeholder="INCXXXXXXXXXX" id="input" />
-          </div>
-          <div class="form-group">
             <label class="col-form-label col-form-label" for="input">Scope</label>
             <select class="custom-select" id="modal-scope">
               <option value="P1">P1 - Everybody</option>
@@ -43,7 +39,11 @@
               <option value="Up">Up - Fixed / Resolved and Monitor</option>
             </select>
           </div>
-
+          <div class="form-group">
+            <label class="col-form-label col-form-label" for="input">Incident Number</label>
+            <input id="modal-inc" class="form-control form-control" type="text" placeholder="INCXXXXXXXXXX" id="input" />
+          </div>
+          
           <div class="form-group">
             <label class="col-form-label col-form-label" for="input">Description</label>
             <input id="modal-desc" class="form-control form-control" type="text" placeholder="Description of the outage" />
@@ -83,3 +83,5 @@
     <script src="main.js"></script>
   </body>
 </html>
+
+

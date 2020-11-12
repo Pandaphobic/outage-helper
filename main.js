@@ -29,8 +29,9 @@ const OutageCtrl = (function () {
     get: function () {
       // getOutageList()
     },
-    udpate: function () {
-      console.log("update-called")
+    update: function () {
+      
+
     },
     delete: function (outageToDelete) {
       console.log(outageToDelete)
@@ -68,7 +69,7 @@ const OutageCtrl = (function () {
 
         newOutageTable.innerHTML += `
         <tr class="${tableType}" data-id="${index+1}">
-          <td>${outage.scope}</td>
+          <td >${outage.scope}</td>
           <td>${outage.inc}</td>
           <td>${outage.desc}</td>
           <td>${outage.inst}</td>
@@ -96,10 +97,9 @@ const ModalCtrl = (function () {
       modalWindow.style.display = "none"
     },
     clear: () => {
-      // Clear fields of the modal
-    },
-    get: () => {
-      // returns an outage object containing all fields in the modal
+      document.getElementById('modal-inc').value = ''
+      document.getElementById('modal-desc').value = ''
+      document.getElementById('modal-inst').value = ''
     }
   }
 })()
@@ -125,6 +125,7 @@ function handleCloseBtn() {
   ModalCtrl.hide()
 }
 function handleBackBtn() {
+  ModalCtrl.clear()
   ModalCtrl.hide()
 }
 
@@ -157,6 +158,4 @@ document.getElementById("modal-back-btn").addEventListener("click", handleBackBt
 document.getElementById("modal-submit-btn").addEventListener("click", handleSubmit)
 // Listen for delete outage
 document.querySelector('tbody').addEventListener('click', handleDeleteBtn)
-
-
 OutageCtrl.init()
